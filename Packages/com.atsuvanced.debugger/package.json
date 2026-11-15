@@ -1,0 +1,42 @@
+{
+  "name": "com.atsuvanced.debugger",
+  "version": "1.0.0",
+  "displayName": "Atsuvanced Debugger",
+  "description": "UI Toolkit based in-game debugger compatible with SRDebugger API (SRDebug / SROptions).",
+  "unity": "6000.0",
+  "keywords": [
+    "debug",
+    "debugger",
+    "console",
+    "options",
+    "ui toolkit",
+    "srdebugger"
+  ],
+  "dependencies": {
+    "com.unity.modules.uielements": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Options Showcase",
+      "description": "Many sample options: every built-in type, 3-level categories, groups, custom views per value type, dynamic categories, pages, log generators and a stress test.",
+      "path": "Samples~/OptionsShowcase"
+    },
+    {
+      "displayName": "SROptions Shim (SRDebugger compatibility)",
+      "description": "Imports SROptions.cs into Assets so that existing 'partial class SROptions' code keeps working.",
+      "path": "Samples~/SROptionsShim"
+    },
+    {
+      "displayName": "Custom Page",
+      "description": "A fully custom page (form + header toolbar), a custom tab and an option that opens a page.",
+      "path": "Samples~/CustomPage"
+    },
+    {
+      "displayName": "Bug Report (HTTP)",
+      "description": "An IBugReporter that POSTs bug reports (JSON + text + screenshot) to your server with UnityWebRequest.",
+      "path": "Samples~/BugReportHttp"
+    }
+  ]
+}

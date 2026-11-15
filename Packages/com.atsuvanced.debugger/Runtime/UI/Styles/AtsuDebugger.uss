@@ -1,0 +1,1552 @@
+/*
+ * Atsuvanced Debugger base styles.
+ * Override anything here by adding a style sheet to DebuggerSettingsAsset > Style Sheets
+ * (those are applied on .atsu-root, after this file). Colors are exposed as custom properties.
+ */
+
+.atsu-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    --atsu-color-bg: rgba(20, 21, 26, 0.97);
+    --atsu-color-surface: rgb(32, 34, 41);
+    --atsu-color-surface-2: rgb(44, 47, 56);
+    --atsu-color-surface-hover: rgb(56, 60, 71);
+    --atsu-color-border: rgb(60, 63, 74);
+    --atsu-color-text: rgb(232, 234, 240);
+    --atsu-color-text-muted: rgb(150, 156, 170);
+    --atsu-color-accent: rgb(84, 160, 255);
+    --atsu-color-error: rgb(236, 92, 92);
+    --atsu-color-warning: rgb(240, 190, 80);
+    /* Opaque on purpose: translucent fills blend in linear space in linear-color projects and look much stronger. */
+    --atsu-color-selection: rgb(36, 54, 82);
+    --atsu-color-selection-hover: rgb(42, 64, 98);
+
+    font-size: 14px;
+    color: var(--atsu-color-text);
+}
+
+.atsu-hidden {
+    display: none;
+}
+
+.atsu-safe-area {
+    flex-grow: 1;
+}
+
+/* ---- Panel ------------------------------------------------------------------------ */
+
+.atsu-panel {
+    flex-grow: 1;
+    background-color: var(--atsu-color-bg);
+}
+
+.atsu-tabbar {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding-right: 4px;
+    background-color: var(--atsu-color-surface);
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-tabbar__tabs {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.atsu-header {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 44px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-header__title {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 8px;
+    font-size: 16px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.atsu-header__toolbar {
+    flex-direction: row;
+    align-items: center;
+}
+
+.atsu-content {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.atsu-page {
+    flex-grow: 1;
+}
+
+/* ---- Standard controls inside the panel (dark variants of the default theme) ------------ */
+
+.atsu-root .unity-base-field__label {
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-root .unity-base-text-field__input,
+.atsu-root .unity-base-popup-field__input,
+.atsu-root .unity-enum-field__input {
+    background-color: var(--atsu-color-surface-2);
+    border-color: var(--atsu-color-border);
+    border-radius: 4px;
+    color: var(--atsu-color-text);
+    min-height: 28px;
+}
+
+.atsu-root .unity-base-text-field__input:focus {
+    border-color: var(--atsu-color-accent);
+}
+
+.atsu-root .unity-text-element--inner-input-field-component {
+    color: var(--atsu-color-text);
+}
+
+.atsu-root .unity-toggle__checkmark {
+    background-color: var(--atsu-color-surface-2);
+    border-color: var(--atsu-color-border);
+    border-radius: 3px;
+    -unity-background-image-tint-color: var(--atsu-color-text);
+}
+
+.atsu-root .unity-foldout__checkmark {
+    -unity-background-image-tint-color: var(--atsu-color-text);
+}
+
+.atsu-root .unity-button {
+    background-color: var(--atsu-color-surface-2);
+    border-color: var(--atsu-color-border);
+    color: var(--atsu-color-text);
+}
+
+.atsu-root .unity-button:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+/* Slim scrollbars */
+.atsu-root .unity-scroller {
+    background-color: transparent;
+    border-width: 0;
+}
+
+.atsu-root .unity-scroller--vertical {
+    width: 8px;
+}
+
+.atsu-root .unity-scroller--horizontal {
+    height: 8px;
+}
+
+.atsu-root .unity-scroller__low-button,
+.atsu-root .unity-scroller__high-button {
+    display: none;
+}
+
+.atsu-root .unity-scroller .unity-base-slider__tracker {
+    background-color: transparent;
+    border-width: 0;
+}
+
+.atsu-root .unity-scroller .unity-base-slider__dragger {
+    background-color: var(--atsu-color-surface-hover);
+    border-width: 0;
+    border-radius: 4px;
+}
+
+.atsu-root .unity-scroller--vertical > .unity-scroller__slider {
+    width: 8px;
+    margin: 2px 0;
+}
+
+/* The default theme's dragger is wider than our 8px scroller and would stick out to the right. */
+.atsu-root .unity-scroller--vertical .unity-base-slider__dragger {
+    width: 6px;
+    left: 1px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* ---- Buttons ---------------------------------------------------------------------- */
+
+.atsu-root .atsu-button,
+.atsu-root .atsu-icon-button,
+.atsu-root .atsu-tab {
+    margin: 0;
+    border-width: 0;
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--atsu-color-text);
+}
+
+.atsu-root .atsu-button {
+    height: 32px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: var(--atsu-color-surface-2);
+}
+
+.atsu-root .atsu-button:hover,
+.atsu-root .atsu-icon-button:hover,
+.atsu-root .atsu-tab:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-root .atsu-button:active,
+.atsu-root .atsu-icon-button:active {
+    background-color: var(--atsu-color-border);
+}
+
+.atsu-root .atsu-button--danger,
+.atsu-root .atsu-button--danger:hover {
+    background-color: var(--atsu-color-error);
+    color: rgb(255, 255, 255);
+}
+
+.atsu-root .atsu-button--primary {
+    background-color: var(--atsu-color-accent);
+    color: rgb(255, 255, 255);
+}
+
+.atsu-root .atsu-icon-button {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+    -unity-text-align: middle-center;
+}
+
+.atsu-root .atsu-tab {
+    height: 38px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 0;
+    color: var(--atsu-color-text-muted);
+    border-bottom-width: 2px;
+    border-bottom-color: transparent;
+}
+
+.atsu-root .atsu-tab--selected {
+    color: var(--atsu-color-text);
+    border-bottom-color: var(--atsu-color-accent);
+    -unity-font-style: bold;
+}
+
+/* ---- Overlays (over the game) ------------------------------------------------------ */
+/* Edges take the full width; each corner is a stack (first = closest to the corner).   */
+
+.atsu-overlays {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.atsu-overlays__edge {
+    flex-shrink: 0;
+}
+
+.atsu-overlays__middle {
+    flex-grow: 1;
+}
+
+.atsu-overlays__stack {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.atsu-overlays__stack--top-left {
+    align-items: flex-start;
+}
+
+.atsu-overlays__stack--top-center {
+    align-items: center;
+}
+
+.atsu-overlays__stack--top-right {
+    align-items: flex-end;
+}
+
+.atsu-overlays__stack--bottom-left {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+.atsu-overlays__stack--bottom-center {
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.atsu-overlays__stack--bottom-right {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.atsu-overlays__stack > * {
+    flex-shrink: 1;
+}
+
+/* ---- Trigger ---------------------------------------------------------------------- */
+
+.atsu-trigger {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+}
+
+.atsu-trigger--pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.atsu-trigger--error {
+    background-color: rgba(236, 92, 92, 0.55);
+}
+
+/* ---- Docked console (over the game) -------------------------------------------------- */
+
+.atsu-dock {
+    background-color: var(--atsu-color-bg);
+    border-color: var(--atsu-color-border);
+}
+
+.atsu-dock--top {
+    border-bottom-width: 1px;
+}
+
+.atsu-dock--bottom {
+    border-top-width: 1px;
+}
+
+.atsu-dock__bar {
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+    padding: 0 4px;
+}
+
+.atsu-dock__toggle {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 100%;
+    overflow: hidden;
+    padding-left: 4px;
+}
+
+.atsu-dock__toggle:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-dock__count {
+    min-width: 28px;
+    margin-right: 4px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 11px;
+    -unity-text-align: middle-center;
+    background-color: var(--atsu-color-surface-2);
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-dock__count--warning {
+    color: var(--atsu-color-warning);
+}
+
+.atsu-dock__count--error {
+    color: var(--atsu-color-error);
+}
+
+.atsu-dock__latest {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.atsu-dock__arrow {
+    width: 24px;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
+
+.atsu-root .atsu-dock__close {
+    width: 28px;
+    height: 26px;
+    margin: 0;
+}
+
+.atsu-dock__lines {
+    overflow: hidden;
+    padding: 0 8px;
+}
+
+/* .atsu-root beats the theme's label margins / padding, which would make lines taller than the fixed height
+   and push the newest ones out of the clipped area. */
+.atsu-root .atsu-dock__line {
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Time and message are separate labels so a shifted line reuses the entry's strings (no per-line formatting). */
+.atsu-root .atsu-dock__line-time,
+.atsu-root .atsu-dock__line-text {
+    margin: 0;
+    padding: 0;
+    -unity-text-align: middle-left;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--atsu-color-text);
+}
+
+.atsu-root .atsu-dock__line-time {
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+.atsu-root .atsu-dock__line-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.atsu-root .atsu-dock--warning {
+    color: var(--atsu-color-warning);
+}
+
+.atsu-root .atsu-dock--error {
+    color: var(--atsu-color-error);
+}
+
+/* ---- Pinned options (over the game) -------------------------------------------------- */
+
+.atsu-pinned {
+    margin: 8px;
+    overflow: hidden;
+    padding: 0 0 4px 0;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    border-radius: 8px;
+    background-color: var(--atsu-color-bg);
+}
+
+.atsu-pinned__scroll {
+    flex-shrink: 1;
+}
+
+.atsu-pinned__header {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 28px;
+    padding: 0 2px 0 10px;
+}
+
+.atsu-pinned__title {
+    flex-grow: 1;
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-pinned__count {
+    margin: 0 4px;
+    padding: 0 6px;
+    border-radius: 8px;
+    font-size: 11px;
+    background-color: var(--atsu-color-surface-2);
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-pinned__header {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-pinned__header:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-pinned__toggle {
+    width: 24px;
+    font-size: 16px;
+    -unity-text-align: middle-center;
+    color: var(--atsu-color-text);
+}
+
+.atsu-pinned--minimized {
+    padding-bottom: 0;
+}
+
+.atsu-pinned--minimized .atsu-pinned__header {
+    border-bottom-width: 0;
+}
+
+.atsu-pinned--minimized .atsu-pinned__title {
+    flex-grow: 0;
+}
+
+.atsu-root .atsu-option--pinned {
+    padding: 2px 8px;
+    border-left-width: 0;
+}
+
+.atsu-root .atsu-option--pinned .atsu-option__main {
+    min-height: 28px;
+}
+
+.atsu-root .atsu-option-group--pinned {
+    margin: 2px 6px;
+    padding: 4px 6px;
+}
+
+/* The overlay is narrow: in horizontal groups, labeled members (sliders, fields) take a whole line and
+   buttons share the next one. */
+.atsu-root .atsu-option-group--pinned .atsu-option-group__members {
+    flex-wrap: wrap;
+}
+
+.atsu-root .atsu-option-group--pinned .atsu-option-group__members > .atsu-option--labeled {
+    flex-basis: 100%;
+    margin-right: 0;
+    margin-bottom: 4px;
+}
+
+/* ---- Common page parts -------------------------------------------------------------- */
+
+.atsu-section {
+    margin: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-section > .unity-foldout__toggle {
+    margin: 0;
+    padding: 8px 12px;
+    background-color: var(--atsu-color-surface);
+}
+
+.atsu-section > .unity-foldout__toggle .unity-label {
+    -unity-font-style: bold;
+    color: var(--atsu-color-text);
+}
+
+.atsu-section > .unity-foldout__content {
+    margin-left: 0;
+}
+
+.atsu-info-row {
+    flex-direction: row;
+    min-height: 30px;
+    padding: 4px 12px 4px 16px;
+    align-items: center;
+}
+
+.atsu-info-row__title {
+    width: 40%;
+    flex-shrink: 0;
+    color: var(--atsu-color-text-muted);
+    white-space: normal;
+}
+
+.atsu-info-row__value {
+    flex-grow: 1;
+    flex-shrink: 1;
+    white-space: normal;
+}
+
+/* Frame time "16.67 ms (min 16.1 / avg 16.7 / max 17.2)": one label per word so only the numbers change. */
+.atsu-profiler__frame-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.atsu-root .atsu-profiler__frame-part {
+    margin: 0 0 0 4px;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.atsu-root .atsu-profiler__frame-part:first-child,
+.atsu-root .atsu-profiler__frame-part--tight {
+    margin-left: 0;
+}
+
+.atsu-placeholder {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-error-box {
+    margin: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: var(--atsu-color-error);
+    background-color: rgba(236, 92, 92, 0.12);
+}
+
+.atsu-error-box__title {
+    -unity-font-style: bold;
+    color: var(--atsu-color-error);
+    white-space: normal;
+}
+
+.atsu-error-box__detail {
+    margin-top: 6px;
+    white-space: normal;
+}
+
+/* ---- Misc ------------------------------------------------------------------------- */
+
+.atsu-root .atsu-button--small {
+    height: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 12px;
+}
+
+.atsu-root .atsu-toggle--on {
+    background-color: var(--atsu-color-accent);
+    color: rgb(255, 255, 255);
+}
+
+.atsu-root .atsu-toggle--off {
+    opacity: 0.45;
+}
+
+.atsu-root .atsu-field--invalid .unity-base-text-field__input {
+    border-color: var(--atsu-color-error);
+}
+
+.atsu-empty {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-searchbar {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 6px 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-searchbar__field {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.atsu-searchbar__hits {
+    margin-left: 8px;
+    color: var(--atsu-color-text-muted);
+    font-size: 12px;
+}
+
+/* ---- Options ---------------------------------------------------------------------- */
+
+/* Option rows draw their own backgrounds: no hover / selection fill from the default theme
+   (it is light grey and would show behind the row on mouse hover). */
+.atsu-root .atsu-option-list__list .unity-collection-view__item,
+.atsu-root .atsu-option-list__list .unity-collection-view__item:hover,
+.atsu-root .atsu-option-list__list .unity-collection-view__item:active {
+    background-color: transparent;
+}
+
+.atsu-category-header {
+    flex-direction: row;
+    align-items: center;
+    height: 34px;
+    padding-left: 8px;
+    padding-right: 12px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-category-header:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-category-header__arrow {
+    width: 18px;
+    color: var(--atsu-color-text-muted);
+    -unity-text-align: middle-center;
+}
+
+.atsu-category-header__name {
+    flex-grow: 1;
+    -unity-font-style: bold;
+}
+
+.atsu-category-header__count {
+    color: var(--atsu-color-text-muted);
+    font-size: 12px;
+}
+
+.atsu-option {
+    padding: 4px 8px 4px 16px;
+    border-left-width: 3px;
+    border-left-color: transparent;
+}
+
+.atsu-option__main {
+    flex-direction: row;
+    align-items: center;
+    min-height: 32px;
+}
+
+.atsu-option__label {
+    width: 38%;
+    flex-shrink: 0;
+    padding-right: 8px;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-option__control {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0;
+}
+
+.atsu-option__description {
+    margin-top: 2px;
+    font-size: 12px;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-option--hit {
+    border-left-color: var(--atsu-color-accent);
+    background-color: rgba(84, 160, 255, 0.08);
+}
+
+.atsu-option--pending .atsu-option__control {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-warning);
+}
+
+.atsu-option--compact {
+    padding: 0;
+    border-left-width: 0;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 6px;
+}
+
+.atsu-option--compact .atsu-option__label {
+    width: auto;
+    min-width: 60px;
+}
+
+.atsu-root .atsu-option-button {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.atsu-option-readonly {
+    white-space: normal;
+}
+
+.atsu-option-number {
+    flex-direction: row;
+    align-items: center;
+}
+
+.atsu-option-number__input {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.atsu-root .atsu-option-number__step {
+    width: 32px;
+    padding: 0;
+    margin: 0 4px;
+    -unity-text-align: middle-center;
+}
+
+.atsu-option-flags {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.atsu-option-color {
+    flex-direction: row;
+    align-items: center;
+}
+
+.atsu-option-color__swatch {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+}
+
+.atsu-option-color__input {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.atsu-pin {
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+}
+
+.atsu-pin:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-pin__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: var(--atsu-color-text-muted);
+}
+
+.atsu-pin--on .atsu-pin__dot {
+    background-color: var(--atsu-color-accent);
+    border-color: var(--atsu-color-accent);
+}
+
+.atsu-option-group {
+    margin: 4px 8px 4px 16px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    background-color: var(--atsu-color-surface);
+}
+
+.atsu-option-group--pending {
+    border-color: var(--atsu-color-warning);
+}
+
+.atsu-option-group__header {
+    flex-direction: row;
+    align-items: center;
+    min-height: 28px;
+}
+
+.atsu-option-group__title {
+    flex-grow: 1;
+    -unity-font-style: bold;
+}
+
+.atsu-option-group__pending {
+    flex-direction: row;
+    align-items: center;
+    color: var(--atsu-color-warning);
+    font-size: 12px;
+}
+
+.atsu-option-group__members {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.atsu-option-group__members--vertical {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.atsu-option-group__members--vertical > .atsu-option--compact {
+    /* Column direction: the horizontal flex-basis: 0 / grow would collapse every row to zero height. */
+    flex-grow: 0;
+    flex-basis: auto;
+    margin-right: 0;
+    margin-bottom: 4px;
+}
+
+.atsu-option-group__members--vertical > .atsu-option--compact .atsu-option__label {
+    width: 38%;
+}
+
+/* ---- Console ---------------------------------------------------------------------- */
+
+.atsu-console {
+    flex-grow: 1;
+}
+
+.atsu-console__bar {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 6px 4px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-root .atsu-console__sev,
+.atsu-root .atsu-console__toggle {
+    height: 28px;
+    margin: 0 2px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.atsu-root .atsu-console__sev--warning {
+    color: var(--atsu-color-warning);
+}
+
+.atsu-root .atsu-console__sev--error {
+    color: var(--atsu-color-error);
+}
+
+.atsu-console__search {
+    flex-grow: 1;
+    margin: 0 4px;
+}
+
+.atsu-console__list {
+    flex-grow: 1;
+}
+
+.atsu-log {
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(60, 63, 74, 0.6);
+}
+
+.atsu-log__severity {
+    width: 4px;
+    height: 100%;
+    background-color: var(--atsu-color-text-muted);
+}
+
+.atsu-log--warning .atsu-log__severity {
+    background-color: var(--atsu-color-warning);
+}
+
+.atsu-log--error .atsu-log__severity {
+    background-color: var(--atsu-color-error);
+}
+
+.atsu-log__body {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 0 8px;
+    overflow: hidden;
+}
+
+.atsu-log__message {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.atsu-log--error .atsu-log__message {
+    color: var(--atsu-color-error);
+}
+
+.atsu-log--warning .atsu-log__message {
+    color: var(--atsu-color-warning);
+}
+
+.atsu-log__meta {
+    font-size: 11px;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-log__count {
+    min-width: 24px;
+    margin-right: 8px;
+    padding: 2px 6px;
+    border-radius: 9px;
+    font-size: 11px;
+    -unity-text-align: middle-center;
+    background-color: var(--atsu-color-surface-2);
+}
+
+/* The default theme colors selected rows via --unity-colors-highlight-background, with :focus/:hover
+   rules more specific than ours. Override the variables and add equally specific rules. */
+.atsu-root .atsu-console__list {
+    --unity-colors-highlight-background: var(--atsu-color-selection);
+    --unity-colors-highlight-background-hover: var(--atsu-color-selection-hover);
+    --unity-colors-highlight-background-inactive: var(--atsu-color-selection);
+    --unity-colors-highlight-text: var(--atsu-color-text);
+}
+
+.atsu-root .atsu-console__list .unity-collection-view__item--selected,
+.atsu-root .atsu-console__list:focus .unity-collection-view__item--selected,
+.atsu-root .atsu-console__list .unity-collection-view__item--selected:hover {
+    background-color: var(--atsu-color-selection);
+}
+
+.atsu-root .atsu-console__list:focus .unity-collection-view__item--selected:hover {
+    background-color: var(--atsu-color-selection-hover);
+}
+
+.atsu-console__detail {
+    height: 40%;
+    flex-shrink: 0;
+    border-top-width: 1px;
+    border-top-color: var(--atsu-color-border);
+    background-color: var(--atsu-color-surface);
+}
+
+.atsu-console__detail-bar {
+    flex-direction: row;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.atsu-console__detail-meta {
+    flex-grow: 1;
+    font-size: 12px;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-console__detail-scroll {
+    flex-grow: 1;
+    padding: 0 12px 8px 12px;
+}
+
+.atsu-console__detail-message {
+    white-space: normal;
+    margin-bottom: 8px;
+}
+
+.atsu-console__detail-stack {
+    white-space: normal;
+    font-size: 12px;
+    color: var(--atsu-color-text-muted);
+}
+
+/* ---- Fixes after play-mode review --------------------------------------------------- */
+
+.atsu-log__body {
+    justify-content: center;
+}
+
+.atsu-root .atsu-log__message,
+.atsu-root .atsu-log__meta {
+    margin: 0;
+    padding: 0;
+}
+
+.atsu-root .atsu-option-vector .unity-composite-field__input {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.atsu-root .atsu-option-vector .unity-composite-field__field {
+    flex-direction: row;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+    margin-right: 4px;
+}
+
+.atsu-root .atsu-option-vector .unity-composite-field__field > .unity-base-field__label {
+    min-width: 14px;
+    width: 14px;
+    padding: 0;
+    -unity-text-align: middle-center;
+}
+
+.atsu-option--compact.atsu-option--hit {
+    background-color: transparent;
+}
+
+.atsu-option--compact.atsu-option--hit .atsu-option__label {
+    color: var(--atsu-color-accent);
+    -unity-font-style: bold;
+}
+
+.atsu-category-header__arrow {
+    font-size: 16px;
+}
+
+
+/* ---- Options: level 1 tabs / level 2 sidebar ------------------------------------------- */
+
+.atsu-options__tabs {
+    flex-shrink: 0;
+    padding: 6px 4px;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--atsu-color-border);
+}
+
+.atsu-root .atsu-chip {
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    margin: 0 3px;
+    padding: 0 12px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    border-radius: 16px;
+    background-color: transparent;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-root .atsu-chip:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-root .atsu-chip--selected {
+    background-color: var(--atsu-color-accent);
+    border-color: var(--atsu-color-accent);
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+}
+
+.atsu-chip__count {
+    margin-left: 6px;
+    font-size: 11px;
+    opacity: 0.7;
+    -unity-font-style: normal;
+}
+
+.atsu-chip__count--hits {
+    opacity: 1;
+    color: var(--atsu-color-warning);
+}
+
+.atsu-chip--selected .atsu-chip__count--hits {
+    color: rgb(255, 255, 255);
+}
+
+.atsu-options__body {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.atsu-options__sidebar {
+    width: 28%;
+    min-width: 130px;
+    max-width: 260px;
+    flex-shrink: 0;
+    background-color: var(--atsu-color-surface);
+    border-right-width: 1px;
+    border-right-color: var(--atsu-color-border);
+}
+
+.atsu-sidebar-item {
+    flex-direction: row;
+    align-items: center;
+    min-height: 40px;
+    padding: 6px 10px 6px 12px;
+    border-left-width: 3px;
+    border-left-color: transparent;
+}
+
+.atsu-sidebar-item:hover {
+    background-color: var(--atsu-color-surface-hover);
+}
+
+.atsu-sidebar-item--selected {
+    border-left-color: var(--atsu-color-accent);
+    background-color: var(--atsu-color-surface-2);
+}
+
+.atsu-sidebar-item__name {
+    flex-grow: 1;
+    flex-shrink: 1;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-sidebar-item--selected .atsu-sidebar-item__name {
+    color: var(--atsu-color-text);
+    -unity-font-style: bold;
+}
+
+.atsu-sidebar-item--general .atsu-sidebar-item__name {
+    -unity-font-style: italic;
+}
+
+.atsu-sidebar-item__count {
+    margin-left: 6px;
+    font-size: 11px;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-category-header--expanded {
+    background-color: var(--atsu-color-surface);
+}
+
+/* ---- Sectioned tabs (left list + section page) ------------------------------------------ */
+
+.atsu-sectioned {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.atsu-sectioned__sidebar {
+    width: 26%;
+    min-width: 130px;
+    max-width: 240px;
+    flex-shrink: 0;
+    background-color: var(--atsu-color-surface);
+    border-right-width: 1px;
+    border-right-color: var(--atsu-color-border);
+}
+
+.atsu-sectioned__content {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.atsu-sectioned__page {
+    flex-grow: 1;
+}
+
+.atsu-sectioned__toolbar {
+    flex-direction: row;
+    align-items: center;
+}
+
+.atsu-option-list,
+.atsu-option-list__list,
+.atsu-option-search {
+    flex-grow: 1;
+}
+
+/* ---- Light theme (DebuggerSettings.Theme = Light) -------------------------------------- */
+
+.atsu-root.atsu-theme--light {
+    --atsu-color-bg: rgb(246, 247, 250);
+    --atsu-color-surface: rgb(255, 255, 255);
+    --atsu-color-surface-2: rgb(232, 235, 241);
+    --atsu-color-surface-hover: rgb(220, 224, 232);
+    --atsu-color-border: rgb(205, 210, 220);
+    --atsu-color-text: rgb(28, 31, 38);
+    --atsu-color-text-muted: rgb(96, 104, 120);
+    --atsu-color-accent: rgb(30, 110, 230);
+    --atsu-color-error: rgb(205, 50, 50);
+    --atsu-color-warning: rgb(185, 120, 0);
+    --atsu-color-selection: rgb(208, 226, 252);
+    --atsu-color-selection-hover: rgb(194, 216, 250);
+    color: var(--atsu-color-text);
+}
+
+/* ---- Keyboard / gamepad focus (FR-PNL-05) ---------------------------------------------- */
+
+.atsu-root .atsu-button:focus,
+.atsu-root .atsu-icon-button:focus,
+.atsu-root .atsu-tab:focus,
+.atsu-root .atsu-entry-code__key:focus {
+    border-width: 2px;
+    border-color: var(--atsu-color-accent);
+}
+
+.atsu-root .atsu-tab:focus {
+    border-bottom-width: 2px;
+}
+
+.atsu-root .unity-toggle:focus .unity-toggle__checkmark {
+    border-color: var(--atsu-color-accent);
+}
+
+/* ---- Console status (Save) ------------------------------------------------------------- */
+
+.atsu-root .atsu-console__status {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 12px;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+    background-color: var(--atsu-color-surface);
+    border-top-width: 1px;
+    border-top-color: var(--atsu-color-border);
+}
+
+.atsu-root .atsu-console__status--error {
+    color: var(--atsu-color-error);
+}
+
+/* ---- Profiler tab ----------------------------------------------------------------------- */
+
+.atsu-profiler {
+    flex-grow: 1;
+}
+
+.atsu-profiler__graph-box {
+    margin: 12px 12px 4px 12px;
+    padding: 8px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    background-color: var(--atsu-color-surface);
+}
+
+.atsu-root .atsu-profiler__legend {
+    margin: 0 0 4px 0;
+    padding: 0;
+    font-size: 11px;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-profiler__graph {
+    height: 120px;
+}
+
+.atsu-profiler__section {
+    margin-top: 8px;
+}
+
+.atsu-root .atsu-profiler__section-title {
+    margin: 0;
+    padding: 6px 12px 2px 12px;
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-root .atsu-profiler__note {
+    margin: 12px;
+    font-size: 11px;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+/* ---- Docked profiler (over the game) ---------------------------------------------------- */
+
+.atsu-docked-profiler {
+    margin: 8px;
+    width: 150px;
+    padding: 4px 6px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    border-radius: 6px;
+    background-color: var(--atsu-color-bg);
+}
+
+.atsu-docked-profiler__text {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.atsu-root .atsu-docked-profiler__value {
+    margin: 0 8px 0 0;
+    padding: 0;
+    font-size: 11px;
+}
+
+.atsu-root .atsu-docked-profiler__fps {
+    -unity-font-style: bold;
+}
+
+.atsu-root .atsu-docked-profiler__memory {
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-docked-profiler__graph {
+    height: 22px;
+    margin-top: 2px;
+}
+
+/* ---- Bug report tab -------------------------------------------------------------------- */
+
+.atsu-bug {
+    flex-grow: 1;
+}
+
+.atsu-bug > .unity-scroll-view__content-viewport > .unity-scroll-view__content-container {
+    padding: 12px;
+}
+
+.atsu-bug__description {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.atsu-root .atsu-bug__description .unity-base-text-field__input {
+    min-height: 120px;
+    -unity-text-align: upper-left;
+    white-space: normal;
+}
+
+.atsu-bug__email {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 8px;
+}
+
+/* Checkbox first, then the label, so every checkbox lines up on the left. */
+.atsu-root .atsu-bug__toggle {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.atsu-root .atsu-bug__toggle > .unity-label {
+    min-width: 0;
+    flex-grow: 1;
+    margin-left: 8px;
+    -unity-text-align: middle-left;
+}
+
+.atsu-root .atsu-bug__toggle > .unity-toggle__input {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+.atsu-bug__screenshot {
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 6px 0 4px 24px;
+}
+
+.atsu-bug__thumbnail {
+    width: 200px;
+    height: 120px;
+    margin-right: 8px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    background-color: var(--atsu-color-surface);
+}
+
+.atsu-root .atsu-bug__no-screenshot {
+    margin: 0 8px 4px 0;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-root .atsu-bug__status {
+    margin: 14px 0 0 0;
+    white-space: normal;
+    color: var(--atsu-color-text-muted);
+}
+
+.atsu-root .atsu-bug__status--error {
+    color: var(--atsu-color-error);
+}
+
+/* ---- Entry code (PIN pad) --------------------------------------------------------------- */
+
+.atsu-entry-code {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.atsu-entry-code__box {
+    width: 260px;
+    padding: 16px;
+    align-items: center;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: var(--atsu-color-border);
+    background-color: var(--atsu-color-bg);
+}
+
+.atsu-entry-code__box--wrong {
+    border-color: var(--atsu-color-error);
+}
+
+.atsu-root .atsu-entry-code__title {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.atsu-entry-code__dots {
+    flex-direction: row;
+    margin-bottom: 6px;
+}
+
+.atsu-entry-code__dot {
+    width: 14px;
+    height: 14px;
+    margin: 0 7px;
+    border-radius: 7px;
+    border-width: 2px;
+    border-color: var(--atsu-color-text-muted);
+}
+
+.atsu-entry-code__dot--filled {
+    background-color: var(--atsu-color-text);
+    border-color: var(--atsu-color-text);
+}
+
+.atsu-root .atsu-entry-code__message {
+    height: 20px;
+    margin: 0 0 6px 0;
+    color: var(--atsu-color-error);
+}
+
+.atsu-entry-code__row {
+    flex-direction: row;
+}
+
+.atsu-root .atsu-entry-code__key {
+    width: 68px;
+    height: 48px;
+    margin: 4px;
+    font-size: 20px;
+}
+
+.atsu-root .atsu-entry-code__key--sub {
+    font-size: 14px;
+    color: var(--atsu-color-text-muted);
+}
+
+/* ---- Progress bars (custom option views) -------------------------------------------------- */
+
+.atsu-root .unity-progress-bar__background {
+    background-color: var(--atsu-color-surface-2);
+    border-color: var(--atsu-color-border);
+}
+
+.atsu-root .unity-progress-bar__progress {
+    background-color: var(--atsu-color-accent);
+}
+
+.atsu-root .unity-progress-bar__title {
+    color: var(--atsu-color-text);
+}

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b3eefed4a204c15ba74927f99aaf7d, type: 3}
+  m_Name: AtsuDebuggerSettings
+  m_EditorClassIdentifier: Atsuvanced.Debugger::Atsuvanced.Debugger.DebuggerSettingsAsset
+  _settings:
+    General:
+      DefaultTab: system
+      SortingOrder: 30000
+      PauseTimeWhenOpen: 0
+      Language: 0
+      Theme: 0
+      UiScale: 1
+      PersistState: 1
+    Trigger:
+      Enabled: 1
+      Position: 0
+      Behaviour: 0
+      Size: 48
+      ErrorNotification: 1
+    EntryCode:
+      Required: 0
+      Code: 1234
+      EveryTime: 0
+    Console:
+      MaximumEntries: 2000
+    DockedConsole:
+      VisibleAtStart: 0
+      Alignment: 1
+      Expanded: 1
+      Lines: 6
+      Opacity: 0.9
+    Pinned:
+      Corner: 2
+      Width: 320
+      MaxHeight: 0.5
+      Opacity: 0.9
+    Profiler:
+      HistoryFrames: 240
+      DockedAtStart: 0
+      DockedCorner: 1
+      DockedOpacity: 0.85
+    BugReport:
+      MaxLogEntries: 500
+      Folder: AtsuvancedDebugger/BugReports
+    Keyboard:
+      Enabled: 1
+      Toggle:
+        Key: 282
+        Control: 0
+        Shift: 0
+        Alt: 0
+      Search:
+        Key: 102
+        Control: 1
+        Shift: 0
+        Alt: 0
+      PreviousTab:
+        Key: 280
+        Control: 0
+        Shift: 0
+        Alt: 0
+      NextTab:
+        Key: 281
+        Control: 0
+        Shift: 0
+        Alt: 0
+  _theme: {fileID: -4733365628477956816, guid: 4b83c8afc3db44c5db666964f5e4d7f5, type: 3}
+  _styleSheets: []
+  _font: {fileID: 0}
