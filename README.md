@@ -1,13 +1,23 @@
 # Atsuvanced Debugger
 
-**属性を付けるだけで、そのままデバッグメニューになる。** UI Toolkit で作り直した、SR Debugger 互換のインゲームデバッガです。
+**属性を付けるだけで、そのままデバッグメニューになる。** UI Toolkit で一から設計した、次世代のインゲームデバッガです。
+
+書くのは数行、規模が大きくなっても重くならず、必要になればどこまでも作り込めます。
 
 - 🏷️ **属性ベース**: プロパティ / メソッドに属性を付けると、型に合った UI（スライダー、トグル、ドロップダウン、ボタン…）が自動で生成されます
 - 🧩 **差し替え自由**: テーマ → 型ごとのビュー → ページ → タブ → Feature と、必要な粒度だけ自作の UI に置き換えられます
-- 📚 **大量データに強い**: オプション数千件・ログ数千件でも、仮想化した ListView で軽く動きます
-- 🔍 **横断検索**: 日本語のかな / カナ、全角 / 半角を区別しない検索
+- 🔌 **組み込みも拡張も同じ仕組み**: System / Console / Profiler などの組み込みタブや常駐表示も、すべて公開 API の上の Feature です。同じ API で追加・削除・置き換えができ、特別扱いの内部 UI はありません
+- 📚 **大量データに強い**: オプション数千件・ログ数千件でも、仮想化した ListView で軽く動きます。値のポーリングは画面に出ている行だけです
+- ♻️ **毎フレームの GC Alloc 0 B**: パネルを閉じている間も開いている間も、デバッガ自身は毎フレームのメモリ確保をしません
+- 🔄 **動的な増減に追従**: オプション / カテゴリ / タブはいつでも増減でき、UI は差分で更新されて選択状態も保たれます
+- 🔍 **横断検索**: ツリーの形を保ったまま絞り込み。日本語のかな / カナ、全角 / 半角を区別しません
 - 📌 **ゲーム画面に常駐**: よく使う項目の Pin、ログ、FPS をパネルを閉じたまま表示
-- 🔁 **SR Debugger 互換**: `SRDebug` / `SROptions` を使ったコードがそのまま動きます
+- 🐞 **バグ報告**: 説明・スクリーンショット（デバッグ UI を除いて撮影）・ログ・システム情報をまとめて保存 / 送信。送信先は差し替え可能
+- 💾 **状態の保存**: Pin・開いていたタブ・オプションの値（`[OptionPersist]`）を次回の起動に引き継ぎます
+- 🛡️ **壊れない**: 自作のページやビューで例外が起きても、その部分だけをエラー表示にしてパネル全体は動き続けます
+- 🤝 **ゲームに干渉しない**: EventSystem を作らず、独自の UIDocument / PanelSettings で動きます。Resources も使いません
+- 🚫 **リリースから完全に外せる**: シンボル 1 つで全 API が no-op になり、設定アセットもビルドから外れます
+- 🌐 **英語 / 日本語 UI**: システム言語に合わせて自動で切り替わり、文言は個別に差し替えられます
 
 > Unity 6（6000.0）以上 / Mono・IL2CPP 対応。本体は [`Packages/com.atsuvanced.debugger`](Packages/com.atsuvanced.debugger/) の UPM パッケージです。
 
@@ -280,14 +290,6 @@ static void ConfigureDebugger() => AtsuDebug.Configure(b => b
     .Add(new NetworkFeature()));                                              // 自作の Feature
 ```
 
-## SR Debugger からの移行
-
-1. SR Debugger を削除し、本パッケージを追加する（`SRDebug` / `SRDebugger.*` は互換アセンブリが提供）
-2. Package Manager > Atsuvanced Debugger > Samples から **SROptions Shim** を Import する
-3. 既存の `partial class SROptions` はそのまま動く
-
-詳しくは [移行ガイド](Packages/com.atsuvanced.debugger/Documentation~/Migration.md) を参照してください。
-
 ## サンプル
 
 Package Manager > Atsuvanced Debugger > Samples から Import できます。このページのスクリーンショットは **Options Showcase** を動かしたものです。
@@ -296,7 +298,6 @@ Package Manager > Atsuvanced Debugger > Samples から Import できます。こ
 |---|---|
 | Options Showcase | 全組み込み型、3 階層カテゴリ、グループ、型ごとの描画、動的カテゴリ、ページ、ログ生成、負荷テスト |
 | Custom Page | 完全独自のページ、カスタムタブ、オプションからページを開く |
-| SROptions Shim | SR Debugger の `partial class SROptions` をそのまま動かす |
 | Bug Report (HTTP) | バグ報告を自分のサーバへ POST する `IBugReporter` |
 
 ## リリースビルドから外す
@@ -307,5 +308,4 @@ Scripting Define Symbols に `ATSU_DEBUGGER_DISABLED` を付けると全 API が
 
 - [パッケージの README（機能の詳細）](Packages/com.atsuvanced.debugger/README.md)
 - [API リファレンス](Packages/com.atsuvanced.debugger/Documentation~/API.md)
-- [SR Debugger からの移行ガイド](Packages/com.atsuvanced.debugger/Documentation~/Migration.md)
 - [CHANGELOG](Packages/com.atsuvanced.debugger/CHANGELOG.md)
