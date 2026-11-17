@@ -12,7 +12,7 @@ namespace Atsuvanced.Debugger.Tests
             r.AddContainer(new WarpOptions());
             var map = r.FindCategory("Map");
 
-            Assert.AreEqual(4, map.Options.Count, "Definitions stay separate (SRDebugger compatible).");
+            Assert.AreEqual(4, map.Options.Count, "Definitions stay separate.");
             CollectionAssert.AreEqual(
                 new[] { "Property:Map/ShowMinimap", "Group:Map/warp(2)", "Method:Map/Reload" },
                 map.Entries.Select(e => e.ToString()));

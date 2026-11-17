@@ -153,7 +153,7 @@ namespace Atsuvanced.Debugger
     [Serializable]
     public sealed class EntryCodeSettings
     {
-        [Tooltip("Ask for a 4-digit PIN before the panel opens (SRDebugger's entry code).")]
+        [Tooltip("Ask for a 4-digit PIN before the panel opens.")]
         public bool Required;
 
         [Tooltip("The 4-digit PIN.")] public string Code = "1234";

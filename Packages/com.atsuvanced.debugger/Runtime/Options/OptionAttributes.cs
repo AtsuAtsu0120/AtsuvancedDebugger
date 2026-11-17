@@ -2,8 +2,7 @@ using System;
 
 namespace Atsuvanced.Debugger
 {
-    // NOTE: These attributes are intentionally not sealed so that the SROptions shim
-    // can expose SRDebugger-style nested attributes (SROptions.NumberRangeAttribute etc.) that derive from them.
+    // NOTE: These attributes are intentionally not sealed so that users can derive their own aliases from them.
 
     /// <summary>
     ///     Category shown in the Options tab. Nest with '/' (e.g. "Player/Status/Buffs") or pass segments
@@ -140,7 +139,7 @@ namespace Atsuvanced.Debugger
         /// <summary>OnAction if the group has both a writable property and a method, otherwise Immediate.</summary>
         Auto,
 
-        /// <summary>Edits are written to the property immediately (SRDebugger behaviour).</summary>
+        /// <summary>Edits are written to the property immediately.</summary>
         Immediate,
 
         /// <summary>Edits are kept as pending values and written just before a method member is invoked.</summary>
@@ -149,7 +148,7 @@ namespace Atsuvanced.Debugger
 
     /// <summary>
     ///     Puts several options (properties and/or methods) into one UI unit, e.g. an input field and the button
-    ///     that submits it. The members remain separate definitions, so SRDebugger still sees them as individual options.
+    ///     that submits it. The members remain separate definitions (one OptionDefinition each).
     ///     Members with the same key in the same category form one group. Settings (Label / Layout / Commit) may be
     ///     given on any one member; the first non-default value wins.
     /// </summary>

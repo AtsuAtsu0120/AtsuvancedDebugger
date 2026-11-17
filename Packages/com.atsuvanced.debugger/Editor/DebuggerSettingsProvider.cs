@@ -39,7 +39,7 @@ namespace Atsuvanced.Debugger.Editor
         {
             return new[]
             {
-                "Atsuvanced", "Debugger", "SRDebugger", "Trigger", "Entry Code", "PIN", "Console", "Profiler",
+                "Atsuvanced", "Debugger", "Trigger", "Entry Code", "PIN", "Console", "Profiler",
                 "Bug Report",
                 "Pinned", "Theme", "Language", "Shortcut"
             };

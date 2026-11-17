@@ -2,15 +2,14 @@
   "name": "com.atsuvanced.debugger",
   "version": "1.0.0",
   "displayName": "Atsuvanced Debugger",
-  "description": "UI Toolkit based in-game debugger compatible with SRDebugger API (SRDebug / SROptions).",
+  "description": "Attribute-driven, UI Toolkit based in-game debugger: options, console, profiler, system info and bug reports.",
   "unity": "6000.0",
   "keywords": [
     "debug",
     "debugger",
     "console",
     "options",
-    "ui toolkit",
-    "srdebugger"
+    "ui toolkit"
   ],
   "dependencies": {
     "com.unity.modules.uielements": "1.0.0",
@@ -22,11 +21,6 @@
       "displayName": "Options Showcase",
       "description": "Many sample options: every built-in type, 3-level categories, groups, custom views per value type, dynamic categories, pages, log generators and a stress test.",
       "path": "Samples~/OptionsShowcase"
-    },
-    {
-      "displayName": "SROptions Shim (SRDebugger compatibility)",
-      "description": "Imports SROptions.cs into Assets so that existing 'partial class SROptions' code keeps working.",
-      "path": "Samples~/SROptionsShim"
     },
     {
       "displayName": "Custom Page",

@@ -402,7 +402,7 @@ namespace Atsuvanced.Debugger
             }
         }
 
-        /// <summary>Pins every option whose display name, member name or Id matches (SRDebugger PinOption semantics).</summary>
+        /// <summary>Pins every option whose display name, member name or Id matches.</summary>
         public void PinByName(string name)
         {
             foreach (var o in _options.ToArray())

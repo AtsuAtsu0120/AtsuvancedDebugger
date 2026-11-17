@@ -34,7 +34,7 @@ namespace Atsuvanced.Debugger.UI
         /// <summary>Each top-level category is a tab; level-2 categories are its sections (default).</summary>
         CategoryTabs,
 
-        /// <summary>One "Options" tab; top-level categories are its sections (like SRDebugger).</summary>
+        /// <summary>One "Options" tab; top-level categories are its sections.</summary>
         SingleTab
     }
 

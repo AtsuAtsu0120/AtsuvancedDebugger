@@ -59,7 +59,7 @@ static void ConfigureDebugger() => AtsuDebug.Configure(b => b
 | バグ報告 | `BugReports`（`BugReportService`） |
 | Feature | `Features`, `GetFeature<T>()`（無ければ null） |
 
-拡張メソッド（`DebugServiceExtensions`、SRDebugger と同じ名前）: `ShowDebugPanel(tabId, requireEntryCode)`, `HideDebugPanel()`, `DestroyDebugPanel()`, `IsDebugPanelVisible()`, `PushPage(page)`, `AddOptionContainer(container, prefix)`, `RemoveOptionContainer`, `AddOption`, `RemoveOption`, `RemoveOptionCategory`, `PinOption`, `UnpinOption`, `PinAllOptions`, `UnpinAllOptions`, `ClearPinnedOptions`, `AddSystemInfo(entry, category)`, `ShowBugReportSheet(onComplete, takeScreenshot, description)`。
+拡張メソッド（`DebugServiceExtensions`）: `ShowDebugPanel(tabId, requireEntryCode)`, `HideDebugPanel()`, `DestroyDebugPanel()`, `IsDebugPanelVisible()`, `PushPage(page)`, `AddOptionContainer(container, prefix)`, `RemoveOptionContainer`, `AddOption`, `RemoveOption`, `RemoveOptionCategory`, `PinOption`, `UnpinOption`, `PinAllOptions`, `UnpinAllOptions`, `ClearPinnedOptions`, `AddSystemInfo(entry, category)`, `ShowBugReportSheet(onComplete, takeScreenshot, description)`。
 
 ### IDebugPanel
 
@@ -190,4 +190,3 @@ static void ConfigureDebugger() => AtsuDebug.Configure(b => b
 |--------|------|
 | `ATSU_DEBUGGER_DISABLED` | 全 API を no-op 化。設定アセットとテーマをビルドから外す |
 | `ATSU_DEBUGGER_DISABLE_AUTO_INIT` | 起動時の自動初期化を無効化 |
-| `ATSU_DEBUGGER_DISABLE_SR_COMPAT` | SRDebugger 互換アセンブリを無効化 |

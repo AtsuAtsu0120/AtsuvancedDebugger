@@ -2,7 +2,7 @@ using System;
 
 namespace Atsuvanced.Debugger
 {
-    /// <summary>Shortcuts for common calls (the names follow SRDebugger's service).</summary>
+    /// <summary>Shortcuts for common calls.</summary>
     public static class DebugServiceExtensions
     {
         // ---- Panel ----------------------------------------------------------------------

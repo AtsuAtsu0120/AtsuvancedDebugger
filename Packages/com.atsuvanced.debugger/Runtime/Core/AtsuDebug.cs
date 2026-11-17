@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Atsuvanced.Debugger
 {
     /// <summary>
-    ///     Static entry point (SRDebug equivalent). The debugger initializes itself before the first scene loads with
+    ///     Static entry point. The debugger initializes itself before the first scene loads with
     ///     <see cref="DebuggerBuilder.CreateDefault" /> plus every <see cref="Configure" /> registered until then.
     /// </summary>
     public static class AtsuDebug

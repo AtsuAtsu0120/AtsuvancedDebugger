@@ -60,8 +60,7 @@ v0.4（Pin・常駐表示・永続化）、v0.5（Profiler）、v0.6（Bug Repor
 - **Light テーマ**（FR-PNL-03）: `General.Theme`（Dark / Light）
 - **キーボード / ゲームパッド操作**（FR-PNL-05）: パネルを開くとタブにフォーカス、フォーカス表示、`Keyboard.PreviousTab` / `Keyboard.NextTab`（既定 PageUp / PageDown、ゲームパッドは L / R）でタブ切り替え
 - `AtsuDebug.ClearSavedState()`（保存した Pin・タブ・検索語・`[OptionPersist]` の値などを消去）。保存したキーの一覧を `AtsuvancedDebugger/__keys` に記録（このバージョンより前に保存されたキーは対象外）
-- SR 互換: `IsProfilerDocked`、`SetEntryCode(EntryCode)` / `DisableEntryCode()`、`SetBugReporterHandler(IBugReporterHandler)`（`BugReport` / `BugReportSubmitResult` / `ConsoleEntry`）、`ShowDebugPanel` の `requireEntryCode`。`PinnedUiCanvasCreated` / `EnableWorldSpaceMode` は `[Obsolete]`（非対応）
-- ドキュメント: `Documentation~/API.md`（API リファレンス）、`Documentation~/Migration.md`（SRDebugger からの移行ガイド）
+- ドキュメント: `Documentation~/API.md`（API リファレンス）
 
 ### Added (v0.6)
 - **Bug Report タブ**（FR-BUG-01）: 説明・メールアドレス・スクリーンショット（デバッグ UI を除いて撮影、撮り直し可）・コンソールのログ・システム情報（`IsPrivate` は除外）を送信。`BugReportPage`（継承可、`CreateReport` で拡張）
@@ -85,7 +84,7 @@ URP が SRP の上に作られているように、組み込みのタブ・常�
 - **追加** オーバーレイ `DebugOverlay`（`OverlayAnchor`: 四隅・上下中央・上下の辺、`Order`、`OverlayVisibility`、`IsActive`）と `IDebugService.Overlays`。トリガー・Pin・Docked Console / Profiler もオーバーレイになり、同じ隅では積み重なる（重なり回避の個別処理を廃止）
 - **変更** `PanelView` を Host（`PanelView`）/ 外枠（`PanelShell`）/ オーバーレイの配置（`OverlayLayer`）に分割。ショートカットは `KeyboardShortcutsFeature` へ
 - **変更** `IDebugService` をサブシステムのアクセサだけにした: `Settings`, `State`, `Options`, `OptionViews`, `Console`, `SystemInfo`, `Profiler`, `Panel`（`IDebugPanel`: 表示 / PIN / スクリーンショット）, `Tabs`, `Pages`, `Overlays`, `BugReports`（`BugReportService`）, `Features`, `GetFeature<T>()`。`ShowDebugPanel` / `AddOptionContainer` / `PinOption` などは拡張メソッド（`DebugServiceExtensions`）。**削除** `IsTriggerEnabled` / `DockedConsole` / `IsProfilerDocked`（各 Feature へ）、`SetBugReporter` / `BugReporter` / `PendingBugReport` / `CompleteBugReport` / `CaptureScreenshot` / `SetEntryCode` 系（`BugReports` / `Panel` へ）
-- **変更** `DebuggerSettings` を Feature ごとのグループにした（`General` / `Trigger` / `EntryCode` / `Console` / `DockedConsole` / `Pinned` / `Profiler` / `BugReport` / `Keyboard`）。`Clone()` は深いコピー。`DefaultTab` はタブ id（文字列）。**削除** `DebugTab` enum（SR 互換の `DefaultTabs` の対応は互換アセンブリへ）
+- **変更** `DebuggerSettings` を Feature ごとのグループにした（`General` / `Trigger` / `EntryCode` / `Console` / `DockedConsole` / `Pinned` / `Profiler` / `BugReport` / `Keyboard`）。`Clone()` は深いコピー。`DefaultTab` はタブ id（文字列）。**削除** `DebugTab` enum
 - **変更** 型ごとのビューの登録をデバッガごとにした（`OptionViewRegistry`、`IDebugService.OptionViews`）。**削除** static の `OptionViews`。スキャン対象の型は `OptionRegistry.AddValueType` / `IsValueTypeSupported`
 - **追加** `IPageNavigator.ActivePage` / `Tabs` / `SelectAdjacentTab`、`DebugTabRegistry.Reorder` / `DebugSectionCollection.Reorder` の公開、`DefaultSystemInfo` の公開
 - **テスト** `PublicApiParityTests` が組み込み Feature とそこから使われる UI 層の型も検査する
@@ -132,7 +131,6 @@ URP が SRP の上に作られているように、組み込みのタブ・常�
   - `DockedConsoleFeature`（`IDockedConsole`: `IsVisible` / `IsExpanded` / `Alignment`、状態は永続化）
   - 設定: `DockedConsole.VisibleAtStart` / `Alignment` / `Expanded` / `Lines` / `Opacity`
   - Console タブに「Dock」ボタン。同じ辺の Pin 表示とトリガーは重ならないよう退避
-  - SR 互換: `SRDebug.Instance.DockConsole`（`IDockConsoleService`、`SRDebugger.ConsoleAlignment`）
 - `ConsoleLogBuffer.CopyLast`
 - **オプション値の保存**（Issues B-06）: `[OptionPersist]` / `OptionDefinition.WithPersistence()`。変更のたびに保存し、登録時に書き戻す（bool / 数値 / string / enum / Vector / Color、InvariantCulture）
 - 組み込みページ `ConsolePage` / `SystemInfoPage` / `OptionSectionPage` / `OptionSearchPage` を `public`・継承可能に
@@ -200,7 +198,6 @@ URP が SRP の上に作られているように、組み込みのタブ・常�
 - オプション検索 `OptionRegistry.Search`（AND 検索、スコア順、全角半角・カナかなを区別しない）
 - 検索結果をツリー上で絞り込む `OptionTreeFilter`（ヒットを含む枝だけを表示・展開）
 - オプショングループ `[OptionGroup]` / `OptionGroup` / `CategoryNode.Entries`（入力欄とボタンを1つの UI として扱い、ボタンで確定）
-- SROptions Shim に `SROptions.GroupAttribute` を追加
 
 ### Changed
 - `PinAllOptions` / `UnpinAllOptions` が配下のカテゴリも対象にするようになった
@@ -209,6 +206,5 @@ URP が SRP の上に作られているように、組み込みのタブ・常�
 ## [0.1.0] - 2026-11-14
 
 ### Added
-- パッケージ骨格（Runtime / Editor / Compat / Tests / Samples~）
+- パッケージ骨格（Runtime / Editor / Tests / Samples~）
 - コア API: `AtsuDebug`, `IDebugService`, Options（走査・登録・Pin）, Console ログバッファ, System Info
-- SRDebugger 互換 API（`SRDebug`, `SRDebugger.*`）と SROptions Shim サンプル
